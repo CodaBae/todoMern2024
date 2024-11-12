@@ -34,7 +34,7 @@
 
 input {
   width: 70%;
-  height: Fill (57px) px;
+  height: 57px;
   padding: 10px 12px 10px 12px;
   gap: 10px;
   border-radius: 5px 0px 0px 0px;
@@ -42,8 +42,8 @@ input {
 }
 
 button {
-  width: Fixed (88px) px;
-  height: Fill (57px) px;
+  width: 88px;
+  height: 57px;
   padding: 10px;
   border-radius: 5px;
   margin-left: 5px;
