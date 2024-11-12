@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./App.css";
+import Heading from "./components/Heading";
+import CardHeader from "./components/CardHeader";
+import CreateTask from "./components/CreateTask";
+import TaskList from "./components/TaskList";
+import axios from "axios";
 
 function App() {
+ const [todoData, setTodoData] =  useState([]);
+
+  const GetAPI = "https://todobackend-7w0m.onrender.com/tasks";
+
+  const getTask = async () => {
+    let data = await axios.get(GetAPI);
+    setTodoData(data.data)
+  };
+
+
+useEffect(()=>{
+  getTask()
+},[])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Heading />
+      <CardHeader />
+      <CreateTask getTaskProps={getTask}/>
+
+      {todoData.map((item, index)=>{
+        return  <TaskList getTaskProps={getTask} todoPropsData={item} />
+      })}
+
+   
+
     </div>
   );
 }
